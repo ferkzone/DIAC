@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIAC – Materiales y Soluciones Industriales</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:    #003F87;
+  --blue-d:  #002B5C;
+  --blue-l:  #E6EEF8;
+  --steel:   #5C7A9B;
+  --text:    #1a1a2e;
+  --muted:   #64748b;
+  --border:  #dde5ef;
+  --bg:      #ffffff;
+  --bg-alt:  #f4f7fb;
+  --green:   #25D366;
+  --radius:  4px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 12px rgba(0,63,135,0.06);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-decoration: none;
+}
+.logo-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: -0.5px;
+}
+.logo-sub {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav-desktop { display: none; }
+.hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 12px 0;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--bg-alt);
+  transition: background 0.2s, color 0.2s;
+}
+.mobile-menu a:hover { background: var(--bg-alt); color: var(--blue); }
+.mobile-menu a.cta-link {
+  margin: 12px 20px 6px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: var(--radius);
+  text-align: center;
+  border-bottom: none;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(160deg, var(--blue-d) 0%, var(--blue) 55%, #1a5fa8 100%);
+  color: #fff;
+  padding: 56px 20px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -60deg,
+    transparent,
+    transparent 60px,
+    rgba(255,255,255,0.025) 60px,
+    rgba(255,255,255,0.025) 61px
+  );
+}
+.hero-kicker {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.hero-kicker::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 2px;
+}
+.hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(28px, 8vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 18px;
+  position: relative;
+}
+.hero h1 em {
+  font-style: normal;
+  color: #7ec8f5;
+}
+.hero-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 520px;
+  position: relative;
+}
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+@media (min-width: 400px) {
+  .hero-actions { flex-direction: row; flex-wrap: wrap; }
+}
+.btn-primary {
+  background: #fff;
+  color: var(--blue);
+  padding: 13px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: opacity 0.2s;
+  text-align: center;
+}
+.btn-primary:hover { opacity: 0.9; }
+.btn-ghost {
+  border: 1px solid rgba(255,255,255,0.5);
+  color: #fff;
+  padding: 13px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+  text-align: center;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  background: var(--blue-d);
+  padding: 0;
+}
+.stats-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .stats-inner { grid-template-columns: repeat(4, 1fr); }
+}
+.stat-item {
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 56px 0; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+@media (min-width: 768px) { .section-inner { padding: 0 40px; } }
+.section-header { margin-bottom: 36px; }
+.section-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-kicker::after {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: var(--blue);
+  opacity: 0.35;
+  border-radius: 2px;
+}
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+.section-title strong { color: var(--blue); font-weight: 700; }
+.section-desc {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-top: 12px;
+}
+
+/* ─── PRODUCT TABS ─── */
+.tabs-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 28px;
+  scrollbar-width: none;
+}
+.tabs-wrap::-webkit-scrollbar { display: none; }
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid var(--border);
+  width: max-content;
+  min-width: 100%;
+}
+.tab-btn {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover { color: var(--blue); }
+.tab-btn.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ─── PRODUCT GRID ─── */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 480px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.product-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  cursor: default;
+}
+.product-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 4px 20px rgba(0,63,135,0.1);
+  transform: translateY(-2px);
+}
+.product-img-wrap {
+  height: 140px;
+  background: var(--bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.product-img-wrap .icon-wrap {
+  width: 56px;
+  height: 56px;
+  background: var(--blue-l);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-img-wrap .icon-wrap svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--blue);
+}
+.product-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+.product-body { padding: 18px 18px 20px; }
+.product-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.product-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.product-list li {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  line-height: 1.4;
+}
+.product-list li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--steel);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+/* ─── APPLICATIONS ─── */
+.apps-bg { background: var(--bg-alt); }
+.apps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media (min-width: 480px) {
+  .apps-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .apps-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.app-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.2s;
+}
+.app-card:hover { border-color: var(--blue); }
+.app-sector {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: var(--blue-l);
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 2px;
+  width: fit-content;
+}
+.app-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.app-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ─── WHY DIAC ─── */
+.why-bg { background: var(--bg); }
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 36px;
+}
+@media (min-width: 640px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .why-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.why-card {
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.why-card:hover { border-color: var(--blue); }
+.why-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--blue);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.why-icon svg { width: 22px; height: 22px; fill: #fff; }
+.why-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.why-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ─── CONTACT BANNER ─── */
+.contact-banner {
+  background: linear-gradient(135deg, var(--blue-d) 0%, var(--blue) 100%);
+  color: #fff;
+  padding: 48px 20px;
+}
+.contact-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.contact-inner h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.contact-inner p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+@media (min-width: 480px) {
+  .contact-actions { flex-direction: row; justify-content: center; }
+}
+
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--green);
+  color: #fff;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.wa-btn:hover { opacity: 0.9; }
+.wa-btn svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+
+/* ─── CONTACT SECTION ─── */
+.contact-bg { background: var(--bg-alt); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+}
+@media (min-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr 1.4fr; }
+}
+.contact-info-col { display: flex; flex-direction: column; gap: 20px; }
+.contact-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.contact-detail-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--blue-l);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-detail-icon svg { width: 18px; height: 18px; fill: var(--blue); }
+.contact-detail-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.contact-detail-text { font-size: 14px; color: var(--text); }
+
+.contact-form {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (min-width: 480px) {
+  .form-row { grid-template-columns: 1fr 1fr; }
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.form-group:last-child { margin-bottom: 0; }
+.form-row .form-group { margin-bottom: 0; }
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg-alt);
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--blue);
+  background: #fff;
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-submit {
+  width: 100%;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 8px;
+}
+.form-submit:hover { opacity: 0.88; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--blue-d);
+  color: rgba(255,255,255,0.8);
+  padding: 40px 20px 24px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+@media (min-width: 640px) {
+  .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
+}
+.footer-brand .logo-name { color: #fff; }
+.footer-brand .logo-sub { color: rgba(255,255,255,0.4); }
+.footer-brand p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+  margin-top: 12px;
+}
+.footer-col h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 14px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.footer-col a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 20px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+@media (min-width: 640px) {
+  .footer-bottom { flex-direction: row; justify-content: space-between; }
+}
+
+/* ─── FLOATING WA ─── */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 300;
+  width: 54px;
+  height: 54px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+}
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }
+
+/* ─── DESKTOP NAV ─── */
+@media (min-width: 860px) {
+  .hamburger { display: none; }
+  .mobile-menu { display: none !important; }
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+  }
+  .nav-desktop a {
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: color 0.2s, background 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-desktop a:hover { color: var(--blue); background: var(--bg-alt); }
+  .nav-desktop a.nav-cta {
+    background: var(--blue);
+    color: #fff;
+    margin-left: 8px;
+    font-weight: 600;
+  }
+  .nav-desktop a.nav-cta:hover { opacity: 0.88; background: var(--blue); }
+  .nav-inner { padding: 0 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="top">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-name">DIAC</span>
+      <span class="logo-sub">Diseño e Ingeniería de Alta Calidad</span>
+    </a>
+    <ul class="nav-desktop">
+      <li><a href="#materiales">Materiales</a></li>
+      <li><a href="#aplicaciones">Aplicaciones</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto" class="nav-cta">Contáctenos</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#materiales" class="menu-link">Materiales y Productos</a>
+    <a href="#aplicaciones" class="menu-link">Sectores de Aplicación</a>
+    <a href="#nosotros" class="menu-link">Quiénes Somos</a>
+    <a href="#contacto" class="cta-link menu-link">Contáctenos →</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <p class="hero-kicker">El aliado estratégico para la agroindustria</p>
+  <h1>Materiales industriales<br>de <em>alta calidad</em></h1>
+  <p class="hero-desc">
+    Diseño e Ingeniería de Alta Calidad. Paneles, sistemas de refrigeración, maquinaria y soluciones constructivas para la industria de alimentos y el sector agroindustrial en Colombia.
+  </p>
+  <div class="hero-actions">
+    <a href="#materiales" class="btn-primary">Ver catálogo de materiales</a>
+    <a href="#contacto" class="btn-ghost">Solicitar cotización</a>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">+15</div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">+200</div>
+      <div class="stat-label">Proyectos realizados</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Líneas de productos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">COL</div>
+      <div class="stat-label">Bogotá, Colombia</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MATERIALES ─── -->
+<section id="materiales">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-kicker">Catálogo de Productos</p>
+      <h2 class="section-title">Materiales y <strong>soluciones</strong> industriales</h2>
+      <p class="section-desc">Proveemos materiales y sistemas completos para proyectos industriales en refrigeración, construcción y maquinaria. Todos los productos adaptables a sus especificaciones.</p>
+    </div>
+
+    <div class="tabs-wrap">
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="refrig">Refrigeración Industrial</button>
+        <button class="tab-btn" data-tab="arquit">Arquitectura Industrial</button>
+        <button class="tab-btn" data-tab="maquin">Maquinaria</button>
+        <button class="tab-btn" data-tab="disenio">Diseño & Ingeniería</button>
+      </div>
+    </div>
+
+    <!-- TAB: REFRIGERACIÓN -->
+    <div class="tab-panel active" id="tab-refrig">
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Almacenamiento</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M15 1H9v2l3 3 3-3V1zM13 12V7h-2v5H7l5 5 5-5h-4zm4.5-4.25c1.96.57 3.5 2.35 3.5 4.25 0 2.58-2.24 4.5-5 4.5H6C3.24 16.5 1 14.58 1 12c0-1.9 1.54-3.68 3.5-4.25L5 7.7C2.91 8.15 1 9.91 1 12c0 3.31 2.69 5.5 5 5.5h12c2.31 0 5-2.19 5-5.5 0-2.09-1.91-3.85-4-4.3l.5.55z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Cámaras Frigoríficas</div>
+            <ul class="product-list">
+              <li>Paneles de poliuretano inyectado alta densidad</li>
+              <li>Pisos para congelación (-40°C)</li>
+              <li>Puertas y ventanas frigoríficas</li>
+              <li>Accesorios de instalación certificados</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Congelación</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22v-2z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Túneles de Congelación</div>
+            <ul class="product-list">
+              <li>Sistemas IQF para congelación rápida</li>
+              <li>Paneles especiales alta resistencia</li>
+              <li>Rack de compresores y unidades condensadoras</li>
+              <li>Diseño a medida según capacidad</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Proceso</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Salas de Proceso</div>
+            <ul class="product-list">
+              <li>Revestimientos sanitarios inoxidables</li>
+              <li>Pisos de resina epóxica antideslizante</li>
+              <li>Puertas rápidas y de vaivén</li>
+              <li>Sistemas de control de temperatura</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Equipos</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M13 2.05V4.05C17.39 4.59 20.5 8.58 19.96 12.97C19.5 16.61 16.64 19.5 13 19.93V21.93C18.5 21.38 22.5 16.5 21.95 11C21.5 6.25 17.73 2.5 13 2.05M5.67 19.74C7.18 21 9.04 21.79 11 21.93V19.92C9.58 19.75 8.23 19.19 7.1 18.31L5.67 19.74M7.1 5.74C8.22 4.84 9.58 4.26 11 4.06V2.06C9.04 2.21 7.18 3.01 5.68 4.26L7.1 5.74M5.69 7.1L4.26 5.68C3 7.14 2.2 8.96 2.05 11H4.05C4.24 9.58 4.8 8.23 5.69 7.1M4.06 13H2.06C2.2 14.96 3.05 16.81 4.26 18.31L5.69 16.9C4.81 15.77 4.24 14.42 4.06 13Z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Equipos de Refrigeración</div>
+            <ul class="product-list">
+              <li>Evaporadores y unidades condensadoras</li>
+              <li>Rack de compresores industriales</li>
+              <li>Chillers y hidroenfriadores</li>
+              <li>Automatización y control remoto</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Paneles</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2h2V7h-4v2h2v8z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Paneles para Revestimiento</div>
+            <ul class="product-list">
+              <li>Paneles PUR y PIR de alta eficiencia</li>
+              <li>Acabados en acero inoxidable o galvanizado</li>
+              <li>Espesores de 40mm a 200mm</li>
+              <li>Certificados para contacto con alimentos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Accesorios</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Accesorios e Instalación</div>
+            <ul class="product-list">
+              <li>Perfiles y conectores para paneles</li>
+              <li>Sistemas de drenaje y desagüe</li>
+              <li>Iluminación LED para espacios fríos</li>
+              <li>Termómetros y sensores industriales</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB: ARQUITECTURA -->
+    <div class="tab-panel" id="tab-arquit">
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Pisos</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Pisos Industriales</div>
+            <ul class="product-list">
+              <li>Resina epóxica antideslizante y antibacteriana</li>
+              <li>Concreto reforzado para alta carga</li>
+              <li>Pisos especiales para cámaras frías</li>
+              <li>Sistemas de desagüe integrado</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Cubiertas</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Cubiertas y Techados</div>
+            <ul class="product-list">
+              <li>Perfiles de acero galvanizado y prepintado</li>
+              <li>Cubiertas termoacústicas sandwich</li>
+              <li>Láminas onduladas y acanaladas</li>
+              <li>Impermeabilización y drenaje pluvial</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Fachadas</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Muros y Fachadas</div>
+            <ul class="product-list">
+              <li>Paneles sandwich para muros divisorios</li>
+              <li>Muros cortina y fachadas ventiladas</li>
+              <li>Acabados en acero inoxidable AISI 304/316</li>
+              <li>Cumplimiento normativa sanitaria INVIMA</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Accesos</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M17 11l-1-1-4 4-2-2-1 1 3 3zM20 3H4v18l8-3.6L20 21V3zm-2 13.1l-6-2.7-6 2.7V5h12v11.1z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Puertas y Accesos Industriales</div>
+            <ul class="product-list">
+              <li>Puertas frigoríficas deslizantes y batientes</li>
+              <li>Puertas rápidas industriales</li>
+              <li>Cortinas de aire y presión</li>
+              <li>Sistemas de control de acceso</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Perfiles</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M3 5v2h18V5H3zm0 6h18V9H3v2zm0 6h18v-2H3v2z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Perfiles Rolados</div>
+            <ul class="product-list">
+              <li>Perfiles en C, Z, omega y tubular</li>
+              <li>Acero estructural galvanizado en frío</li>
+              <li>Fabricación por pedido en cualquier medida</li>
+              <li>Certificación de calidad por lote</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Accesorios</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Accesorios y Remates</div>
+            <ul class="product-list">
+              <li>Canales y bajantes pluviales</li>
+              <li>Remates para fachadas y cubiertas</li>
+              <li>Esquineros y protectores de impacto</li>
+              <li>Sellantes y láminas de impermeabilización</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB: MAQUINARIA -->
+    <div class="tab-panel" id="tab-maquin">
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Proceso</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Máquinas de Proceso</div>
+            <ul class="product-list">
+              <li>Diseño y fabricación a medida</li>
+              <li>Acero inoxidable alimentario AISI 304/316</li>
+              <li>Automatización PLC y HMI</li>
+              <li>Certificación para industria de alimentos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Transporte</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.53 15.47 1 12.77 1c-1.79 0-3.37.88-4.32 2.21L7 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-5 8.5c0 .28-.22.5-.5.5h-5c-.28 0-.5-.22-.5-.5v-1c0-.28.22-.5.5-.5h5c.28 0 .5.22.5.5v1z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Bandas y Sistemas de Transporte</div>
+            <ul class="product-list">
+              <li>Bandas transportadoras sanitarias</li>
+              <li>Transportadores de cadena y rodillos</li>
+              <li>Elevadores de cangilones</li>
+              <li>Sistemas de distribución automatizada</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Tanques</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M5 21h14V3H5v18zm2-2V5h10v14H7zm2-3h6v-2H9v2zm0-4h6V10H9v2z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Tuberías y Tanques</div>
+            <ul class="product-list">
+              <li>Tanques de almacenamiento en acero inoxidable</li>
+              <li>Tuberías sanitarias soldadas orbital</li>
+              <li>Intercambiadores de calor a medida</li>
+              <li>Sistemas de CIP (limpieza en sitio)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Congelación</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Equipos de Enfriamiento</div>
+            <ul class="product-list">
+              <li>Pre-enfriadores y enfriadores de producto</li>
+              <li>Equipos de vacío para flores y vegetales</li>
+              <li>Equipos de inmersión y aspersión</li>
+              <li>Sistemas de agua helada</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">CNC</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zm-4 5.5c0 .83-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5v-8c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5v8zM4 19h16v2H4z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Mecanizados CNC</div>
+            <ul class="product-list">
+              <li>Piezas de precisión por encargo</li>
+              <li>Moldes de inyección y matrices</li>
+              <li>Fresado, torneado y rectificado</li>
+              <li>Tolerancias hasta 0.01 mm</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Hidráulica</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Sistemas Hidráulicos y Neumáticos</div>
+            <ul class="product-list">
+              <li>Centrales hidráulicas a medida</li>
+              <li>Cilindros y actuadores especiales</li>
+              <li>Sistemas neumáticos de dosificación</li>
+              <li>Válvulas y manifolds en acero inox</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB: DISEÑO -->
+    <div class="tab-panel" id="tab-disenio">
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Mecánico</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 018.5 12 3.5 3.5 0 0112 8.5a3.5 3.5 0 013.5 3.5 3.5 3.5 0 01-3.5 3.5m7.43-2.92c.04-.3.07-.63.07-.96s-.03-.63-.07-.96l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 3.18 14.25 3 14 3h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 12c-.04.3-.07.63-.07.96s.03.63.07.96l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Diseño Mecánico</div>
+            <ul class="product-list">
+              <li>Modelado 3D SolidWorks y AutoCAD</li>
+              <li>Cálculo estructural y análisis FEM</li>
+              <li>Planos de fabricación certificados</li>
+              <li>Ingeniería inversa de equipos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Plantas</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Diseño de Plantas Industriales</div>
+            <ul class="product-list">
+              <li>Layout y flujo de procesos</li>
+              <li>Diseño de plantas BPM para alimentos</li>
+              <li>Gestión de espacios y circulaciones</li>
+              <li>Cumplimiento normativa sanitaria</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Refrigeración</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22v-2z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Diseño de Sistemas de Refrigeración</div>
+            <ul class="product-list">
+              <li>Cálculo de carga frigorífica</li>
+              <li>Selección de equipos y componentes</li>
+              <li>Diagramas P&ID y esquemas eléctricos</li>
+              <li>Memoria técnica y especificaciones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Producto</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Diseño de Producto</div>
+            <ul class="product-list">
+              <li>Prototipado rápido e impresión 3D</li>
+              <li>Desarrollo de productos nuevos</li>
+              <li>Optimización de piezas existentes</li>
+              <li>Documentación técnica completa</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Arquitectónico</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Diseño Arquitectónico Industrial</div>
+            <ul class="product-list">
+              <li>Diseño de instalaciones agroindustriales</li>
+              <li>Renders y visualización 3D</li>
+              <li>Gestión de permisos y licencias</li>
+              <li>Supervisión técnica de obra</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-img-wrap">
+            <span class="product-tag">Integral</span>
+            <div class="icon-wrap">
+              <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg>
+            </div>
+          </div>
+          <div class="product-body">
+            <div class="product-name">Consultoría de Ingeniería</div>
+            <ul class="product-list">
+              <li>Auditorías técnicas de instalaciones</li>
+              <li>Optimización de procesos industriales</li>
+              <li>Asesoría en normativa INVIMA y BPM</li>
+              <li>Estudios de factibilidad técnica</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── APLICACIONES ─── -->
+<section id="aplicaciones" class="apps-bg">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-kicker">Sectores de aplicación</p>
+      <h2 class="section-title">Industrias que <strong>atendemos</strong></h2>
+    </div>
+    <div class="apps-grid">
+      <div class="app-card">
+        <span class="app-sector">Agroindustria</span>
+        <div class="app-name">Procesamiento de Alimentos</div>
+        <p class="app-desc">Cámaras de conservación, túneles de congelación y salas de proceso para frutas, verduras, lácteos y procesados.</p>
+      </div>
+      <div class="app-card">
+        <span class="app-sector">Cárnico</span>
+        <div class="app-name">Plantas de Beneficio</div>
+        <p class="app-desc">Diseño y montaje completo de plantas de sacrificio, desposte y empaque bajo normativa INVIMA.</p>
+      </div>
+      <div class="app-card">
+        <span class="app-sector">Farmacéutica</span>
+        <div class="app-name">Cadena de Frío BPM</div>
+        <p class="app-desc">Temperatura controlada para laboratorios y distribución de medicamentos, vacunas y biológicos.</p>
+      </div>
+      <div class="app-card">
+        <span class="app-sector">Floricultura</span>
+        <div class="app-name">Poscosecha Floral</div>
+        <p class="app-desc">Cuartos de frío y túneles de enfriamiento rápido para exportación de flores cortadas con alta calidad.</p>
+      </div>
+      <div class="app-card">
+        <span class="app-sector">Logística</span>
+        <div class="app-name">Centros de Distribución</div>
+        <p class="app-desc">Bodegas frigoríficas y sistemas de manejo de carga para cadena de frío en logística nacional.</p>
+      </div>
+      <div class="app-card">
+        <span class="app-sector">Retail</span>
+        <div class="app-name">Supermercados</div>
+        <p class="app-desc">Sistemas centralizados de refrigeración y exhibición para grandes superficies y cadenas de retail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY DIAC ─── -->
+<section id="nosotros" class="why-bg">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-kicker">Por qué DIAC</p>
+      <h2 class="section-title">Diseño e ingeniería<br><strong>a la medida</strong></h2>
+      <p class="section-desc">Somos el aliado estratégico para el sector de la agroindustria y la refrigeración en Colombia. Diseño, fabricación e instalación con los más altos estándares de calidad.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        </div>
+        <div class="why-title">Materiales certificados</div>
+        <p class="why-desc">Todos nuestros materiales cumplen normativas sanitarias para contacto con alimentos e industria farmacéutica.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <div class="why-title">Soporte técnico local</div>
+        <p class="why-desc">Equipo de ingenieros especializados en Bogotá con acompañamiento permanente antes, durante y después del proyecto.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        </div>
+        <div class="why-title">Entrega puntual</div>
+        <p class="why-desc">Cronogramas de obra y entrega de materiales cumplidos, con seguimiento en tiempo real del estado de su pedido.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z"/></svg>
+        </div>
+        <div class="why-title">Solución integral</div>
+        <p class="why-desc">De la consultoría al montaje final. Nos encargamos de todo para que su proyecto esté en las mejores manos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT BANNER ─── -->
+<div class="contact-banner">
+  <div class="contact-inner">
+    <h2>¿Tiene un proyecto en mente?</h2>
+    <p>Cuéntenos sus necesidades y le enviamos una propuesta con especificaciones técnicas y precios en menos de 24 horas.</p>
+    <div class="contact-actions">
+      <a href="https://wa.me/573132834738?text=Hola%20DIAC%2C%20me%20interesa%20cotizar%20materiales%20para%20un%20proyecto%20industrial." class="wa-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Cotizar por WhatsApp
+      </a>
+      <a href="#contacto" class="btn-ghost">Enviar formulario</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CONTACT SECTION ─── -->
+<section id="contacto" class="contact-bg">
+  <div class="section-inner">
+    <div class="section-header">
+      <p class="section-kicker">Contáctenos</p>
+      <h2 class="section-title">Hablemos de <strong>su proyecto</strong></h2>
+    </div>
+    <div class="contact-grid">
+
+      <div class="contact-info-col">
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Dirección</div>
+            <div class="contact-detail-text">Cr 68h Nº 74B-54, Bogotá D.C., Colombia</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">WhatsApp / Teléfono</div>
+            <div class="contact-detail-text">+57 313 283 4738</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-text">contacto@diac.com.co</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Sitio web</div>
+            <div class="contact-detail-text">www.diac.com.co</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Juan García">
+          </div>
+          <div class="form-group">
+            <label>Empresa</label>
+            <input type="text" placeholder="Nombre de su empresa">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" placeholder="+57 300 000 0000">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="correo@empresa.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Línea de producto de interés</label>
+          <select>
+            <option value="">Seleccione una línea…</option>
+            <option>Refrigeración Industrial (paneles, equipos, cámaras)</option>
+            <option>Arquitectura Industrial (pisos, cubiertas, fachadas)</option>
+            <option>Maquinaria a medida (bandas, tanques, CNC)</option>
+            <option>Diseño e Ingeniería (plantas, sistemas)</option>
+            <option>Proyecto integral (diseño + materiales + instalación)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Descripción del proyecto</label>
+          <textarea placeholder="Cuéntenos brevemente qué materiales o sistemas necesita…"></textarea>
+        </div>
+        <button class="form-submit" type="button">Enviar solicitud →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-name">DIAC</span>
+          <span class="logo-sub">Diseño e Ingeniería de Alta Calidad</span>
+        </div>
+        <p>El aliado estratégico para el sector de la agroindustria y la refrigeración en Colombia. Bogotá, Colombia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Materiales</h4>
+        <ul>
+          <li><a href="#materiales">Refrigeración Industrial</a></li>
+          <li><a href="#materiales">Arquitectura Industrial</a></li>
+          <li><a href="#materiales">Maquinaria</a></li>
+          <li><a href="#materiales">Diseño & Ingeniería</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#nosotros">Quiénes somos</a></li>
+          <li><a href="#aplicaciones">Sectores</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="https://wa.me/573132834738" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 DIAC – Diseño e Ingeniería de Alta Calidad · Bogotá, Colombia · Cr 68h Nº 74B-54</p>
+      <p>www.diac.com.co</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── FLOATING WA ─── -->
+<a href="https://wa.me/573132834738?text=Hola%20DIAC%2C%20me%20interesa%20cotizar%20materiales%20para%20un%20proyecto%20industrial." class="wa-float" target="_blank" title="WhatsApp DIAC">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // Hamburger
+  const ham = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  ham.addEventListener('click', () => {
+    ham.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      ham.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
+
+  // Tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
